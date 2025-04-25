@@ -1,0 +1,22 @@
+server:
+    port: 8081
+
+spring:
+    application:
+        name: chat-websocket
+    profiles:
+        active: dev
+    data:
+        redis:
+            host: 192.168.2.201
+            port: 6379
+            password: pass@word1
+            database: 2
+            timeout: 3000
+            lettuce:
+                pool:
+                    min-idle: 5
+                    max-idle: 5
+                    max-active: 10
+                    max-wait: 1000ms
+
