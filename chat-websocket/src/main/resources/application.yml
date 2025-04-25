@@ -20,3 +20,13 @@ spring:
                     max-active: 10
                     max-wait: 1000ms
 
+    thymeleaf:
+        servlet:
+            content-type: text/html
+            mode: HTML5
+            prefix: classpath:/templates/
+            suffix: .html
+            cache: false
+            enable-spring-el-compiler: false
+
+

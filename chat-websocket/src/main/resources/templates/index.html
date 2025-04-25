@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录页面</title>
+</head>
+<body>
+
+<button id="btn-page1" type="button">websocket</button>
+<button id="btn-page2" type="button">stomp</button>
+
+<script>
+document.getElementById('btn-page1').addEventListener('click', function () {
+    window.location.href = '/websocket'; // 替换为实际的页面路径
+});
+
+document.getElementById('btn-page2').addEventListener('click', function () {
+    window.location.href = '/stomp'; // 替换为实际的页面路径
+});
+</script>
+</body>
+</html>
