@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.harris</groupId>
+    <groupId>com.hobby</groupId>
     <artifactId>simple-chat</artifactId>
     <version>1.0.0</version>
 
@@ -16,10 +16,12 @@
         <module>chat-gateway</module>
         <module>chat-websocket</module>
         <module>chat-stomp</module>
+        <module>chat-others</module>
+        <module>chat-auth</module>
     </modules>
 
     <properties>
-        <chat.version>1.0.0</chat.version>
+        <hobby.version>1.0.0</hobby.version>
         <java.version>17</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -27,10 +29,20 @@
         <spring-cloud.version>2023.0.5</spring-cloud.version>
         <spring-cloud-alibaba.version>2021.0.4.0</spring-cloud-alibaba.version>
         <spring-boot.version>3.3.11</spring-boot.version>
+        <commons-lang3.version>3.17.0</commons-lang3.version>
+        <spring-framework.version>6.1.19</spring-framework.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <!-- 统一管理spring framework 版本 -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-framework-bom</artifactId>
+                <version>${spring-framework.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
@@ -56,9 +68,20 @@
             </dependency>
 
             <dependency>
-                <groupId>com.harris</groupId>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang3.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.hobby</groupId>
+                <artifactId>chat-common-core</artifactId>
+                <version>${hobby.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.hobby</groupId>
                 <artifactId>chat-common-redis</artifactId>
-                <version>${chat.version}</version>
+                <version>${hobby.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WebSocket 在线测试工具</title>
+    <link rel="stylesheet" th:href="@{/css/websocket.css}">
+</head>
+<body>
+<div class="header">
+    <h2>WebSocket 测试工具</h2>
+    <div>描述</div>
+</div>
+<div class="container">
+    <div class="left-panel">
+        <div class="message-header">消息窗口</div>
+        <div id="message-box" class="message-box"></div>
+    </div>
+    <div class="right-panel">
+        <div class="input-ui">
+            <input type="text" id="ws-url" value="ws://127.0.0.1:8081/chat"
+                   placeholder="请输入WebSocket URL">
+        </div>
+        <div class="button-group">
+            <button class="btn-green" id="connect-btn">连接</button>
+            <button class="btn-red" id="disconnect-btn">断开</button>
+            <button class="btn-blue" id="clean-btn">清除</button>
+        </div>
+        <div class="input-ui">
+            <textarea id="message-input" placeholder="发送内容" rows="5"></textarea>
+        </div>
+        <button class="btn-blue" id="send-btn">发送(ctrl+回车)</button>
+    </div>
+</div>
+
+<script>
+    let ws = null;
+
+    document.getElementById('connect-btn').addEventListener('click', function () {
+        const url = document.getElementById('ws-url').value;
+        if (ws) {
+            appendMessage('系统提示', '当前已连接，请勿重复连接', "red");
+        } else {
+            ws = new WebSocket(url);
+        }
+
+        ws.onopen = function (event) {
+            if (event.target.readyState === WebSocket.OPEN) {
+                appendMessage('系统提示', '连接成功', "default");
+            }
+        };
+
+        ws.onmessage = function (event) {
+            appendMessage('服务器', event.data, "blue");
+        };
+
+        ws.onclose = function (event) {
+            if (event.target.readyState === WebSocket.CLOSED) {
+                appendMessage('系统提示', '连接已关闭', "default");
+            }
+        };
+
+        ws.onerror = function (event) {
+            if (event.target.readyState === WebSocket.OPEN) {
+                appendMessage('服务器', event.message, "default");
+            }
+        };
+    });
+
+    document.getElementById('disconnect-btn').addEventListener('click', function () {
+        if (ws) {
+            ws.close();
+        } else {
+            appendMessage('系统提示', "当前连接已断开，请勿重复点击", "red");
+        }
+    });
+
+    document.getElementById('clean-btn').addEventListener('click', function () {
+        document.getElementById('message-box').innerHTML = '';
+        appendMessage('系统提示', "历史记录清除成功", "default");
+    });
+
+    document.getElementById('send-btn').addEventListener('click', function () {
+        if (ws && ws.readyState === WebSocket.OPEN) {
+            const message = document.getElementById('message-input').value;
+            if (message.trim() !== '') {
+                ws.send(message);
+                appendMessage('您', message, "green");
+            } else {
+                appendMessage('服务器', '消息不能为空', "blue");
+            }
+            document.getElementById('message-input').value = '';
+        } else {
+            appendMessage('系统提示', "当前连接已断开，请连接后重试", "red");
+        }
+    });
+
+    document.getElementById('message-input').addEventListener('keydown', function (event) {
+        if (event.ctrlKey && event.key === 'Enter') {
+            document.getElementById('send-btn').click();
+        }
+    });
+
+    function appendMessage(userName, message, type) {
+        const messageBox = document.getElementById('message-box');
+        const timestamp = new Date().toLocaleTimeString();
+        const messageElement = document.createElement('div');
+        const messageHeader = document.createElement('div');
+        messageHeader.className = 'message-info-' + type;
+        messageHeader.textContent = ` ${userName} ${timestamp}`;
+        messageElement.className = 'message-info';
+        messageElement.textContent = ` ${message}`;
+        messageBox.appendChild(messageHeader)
+        messageBox.appendChild(messageElement);
+        messageBox.scrollTop = messageBox.scrollHeight;
+    }
+</script>
+
+</body>
+</html>

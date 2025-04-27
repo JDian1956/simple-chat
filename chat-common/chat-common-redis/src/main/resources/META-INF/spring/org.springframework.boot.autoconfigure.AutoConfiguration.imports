@@ -1,2 +1,2 @@
-com.harris.common.redis.config.RedisConfig
-com.harris.common.redis.util.RedisUtils
+com.hobby.common.redis.config.RedisConfig
+com.hobby.common.redis.util.RedisUtils

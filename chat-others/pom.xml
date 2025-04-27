@@ -7,8 +7,8 @@
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>chat-stomp</artifactId>
-    <description>chat-stomp</description>
+    <artifactId>chat-others</artifactId>
+    <description>chat-others</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -19,9 +19,10 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-websocket</artifactId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
     </dependencies>
 </project>

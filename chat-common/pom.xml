@@ -2,23 +2,22 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.harris</groupId>
+        <groupId>com.hobby</groupId>
         <artifactId>simple-chat</artifactId>
         <version>1.0.0</version>
     </parent>
 
     <artifactId>chat-common</artifactId>
+    <description>common</description>
     <packaging>pom</packaging>
 
     <modules>
         <module>chat-common-redis</module>
+        <module>chat-common-core</module>
     </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>17</java.version>
     </properties>
-
-    <dependencies>
-
-    </dependencies>
 </project>

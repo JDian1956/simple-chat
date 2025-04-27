@@ -3,25 +3,21 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.hobby</groupId>
-        <artifactId>simple-chat</artifactId>
+        <artifactId>chat-common</artifactId>
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>chat-stomp</artifactId>
-    <description>chat-stomp</description>
+    <artifactId>chat-common-core</artifactId>
+
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>17</java.version>
     </properties>
-
     <dependencies>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-websocket</artifactId>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
         </dependency>
     </dependencies>
 </project>
