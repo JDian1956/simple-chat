@@ -4,7 +4,7 @@ package com.hobby.core.enums;
  * @author Harris
  * 10000 成功， 12xxx 认证异常，13xxx 服务异常，14xxx 参数异常，15xxx 业务异常，16xxx 其他异常
  */
-public enum ErrorEnums {
+public enum HttpStatusEnums {
 
     /**
      * 成功
@@ -40,7 +40,7 @@ public enum ErrorEnums {
     private final int code;
     private final String msg;
 
-    ErrorEnums(int code, String msg) {
+    HttpStatusEnums(int code, String msg) {
         this.code = code;
         this.msg = msg;
     }

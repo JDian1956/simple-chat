@@ -11,8 +11,5 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 public class WebMvcConfig {
 
-    @Bean
-    public PasswordEncoder passwordEncoder(){
-        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
-    }
+
 }

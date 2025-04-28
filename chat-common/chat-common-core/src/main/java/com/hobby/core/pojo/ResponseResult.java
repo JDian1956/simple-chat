@@ -1,6 +1,6 @@
 package com.hobby.core.pojo;
 
-import com.hobby.core.enums.ErrorEnums;
+import com.hobby.core.enums.HttpStatusEnums;
 
 import java.io.Serializable;
 
@@ -41,15 +41,15 @@ public class ResponseResult<T> implements Serializable {
     }
 
     public static <T> ResponseResult<T> success() {
-        return success(ErrorEnums.SUCCESS.getCode(), ErrorEnums.SUCCESS.getMsg(), null);
+        return success(HttpStatusEnums.SUCCESS.getCode(), HttpStatusEnums.SUCCESS.getMsg(), null);
     }
 
     public static <T> ResponseResult<T> success(String msg) {
-        return success(ErrorEnums.SUCCESS.getCode(), msg, null);
+        return success(HttpStatusEnums.SUCCESS.getCode(), msg, null);
     }
 
     public static <T> ResponseResult<T> success(T data) {
-        return success(ErrorEnums.SUCCESS.getCode(), ErrorEnums.SUCCESS.getMsg(), data);
+        return success(HttpStatusEnums.SUCCESS.getCode(), HttpStatusEnums.SUCCESS.getMsg(), data);
     }
 
     public static <T> ResponseResult<T> success(Integer code, String msg, T data) {
@@ -61,11 +61,11 @@ public class ResponseResult<T> implements Serializable {
     }
 
     public static <T> ResponseResult<T> error() {
-        return error(ErrorEnums.REQUEST_FAIL.getCode(), ErrorEnums.REQUEST_FAIL.getMsg(), null);
+        return error(HttpStatusEnums.REQUEST_FAIL.getCode(), HttpStatusEnums.REQUEST_FAIL.getMsg(), null);
     }
 
-    public static <T> ResponseResult<T> error(ErrorEnums errorEnums) {
-        return error(errorEnums.getCode(), errorEnums.getMsg(), null);
+    public static <T> ResponseResult<T> error(HttpStatusEnums httpStatusEnums) {
+        return error(httpStatusEnums.getCode(), httpStatusEnums.getMsg(), null);
     }
 
     public static <T> ResponseResult<T> error(int code, String msg) {
@@ -73,7 +73,7 @@ public class ResponseResult<T> implements Serializable {
     }
 
     public static <T> ResponseResult<T> error(T data) {
-        return error(ErrorEnums.REQUEST_FAIL.getCode(), ErrorEnums.REQUEST_FAIL.getMsg(), data);
+        return error(HttpStatusEnums.REQUEST_FAIL.getCode(), HttpStatusEnums.REQUEST_FAIL.getMsg(), data);
     }
 
     public static <T> ResponseResult<T> error(int code, String msg, T data) {

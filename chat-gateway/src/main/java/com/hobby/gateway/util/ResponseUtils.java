@@ -1,6 +1,6 @@
 package com.hobby.gateway.util;
 
-import com.hobby.core.enums.ErrorEnums;
+import com.hobby.core.enums.HttpStatusEnums;
 import com.hobby.core.pojo.ResponseResult;
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.http.HttpHeaders;
@@ -13,12 +13,12 @@ import reactor.core.publisher.Mono;
  */
 public class ResponseUtils {
 
-    public static Mono<Void> webFluxResponse(ServerHttpResponse response, ErrorEnums errorEnums) {
-        return webFluxResponse(response, HttpStatus.OK, errorEnums.getMsg(), errorEnums.getCode());
+    public static Mono<Void> webFluxResponse(ServerHttpResponse response, HttpStatusEnums httpStatusEnums) {
+        return webFluxResponse(response, HttpStatus.OK, httpStatusEnums.getMsg(), httpStatusEnums.getCode());
     }
 
     public static Mono<Void> webFluxResponse(ServerHttpResponse response, String msg) {
-        return webFluxResponse(response, HttpStatus.OK, msg, ErrorEnums.OTHERS_ERROR.getCode());
+        return webFluxResponse(response, HttpStatus.OK, msg, HttpStatusEnums.OTHERS_ERROR.getCode());
     }
 
     public static Mono<Void> webFluxResponse(ServerHttpResponse response, String msg, int code) {

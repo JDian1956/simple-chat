@@ -1,6 +1,6 @@
 package com.hobby.gateway.handler;
 
-import com.hobby.core.enums.ErrorEnums;
+import com.hobby.core.enums.HttpStatusEnums;
 import com.hobby.gateway.util.ResponseUtils;
 import org.slf4j.Logger;
 import org.springframework.boot.web.reactive.error.ErrorWebExceptionHandler;
@@ -14,7 +14,7 @@ import reactor.core.publisher.Mono;
 
 /**
  * @author Harris
- * <p>
+ *
  * 网关统一异常处理
  */
 @Order(-1)
@@ -30,12 +30,13 @@ public class GatewayExceptionHandler implements ErrorWebExceptionHandler {
         }
 
         logger.error("[网关异常处理]请求路径:{},异常信息:{}", exchange.getRequest().getPath(), ex.getMessage());
+
         if (ex instanceof NotFoundException) {
-            return ResponseUtils.webFluxResponse(response, ErrorEnums.NOT_FOUND);
+            return ResponseUtils.webFluxResponse(response, HttpStatusEnums.NOT_FOUND);
         } else if (ex instanceof ResponseStatusException) {
             return ResponseUtils.webFluxResponse(response, ex.getMessage());
         } else {
-            return ResponseUtils.webFluxResponse(response, ErrorEnums.SERVER_ERROR);
+            return ResponseUtils.webFluxResponse(response, HttpStatusEnums.SERVER_ERROR);
         }
     }
 }

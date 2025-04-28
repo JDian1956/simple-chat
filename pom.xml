@@ -31,6 +31,10 @@
         <spring-boot.version>3.3.11</spring-boot.version>
         <commons-lang3.version>3.17.0</commons-lang3.version>
         <spring-framework.version>6.1.19</spring-framework.version>
+        <druid.version>1.2.24</druid.version>
+        <mybatis-plus.version>3.5.11</mybatis-plus.version>
+        <lombok.version>1.18.38</lombok.version>
+        <fastjson2.version>2.0.57</fastjson2.version>
     </properties>
 
     <dependencyManagement>
@@ -68,9 +72,27 @@
             </dependency>
 
             <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+
+            <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>${commons-lang3.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba.fastjson2</groupId>
+                <artifactId>fastjson2</artifactId>
+                <version>${fastjson2.version}</version>
             </dependency>
 
             <dependency>
@@ -78,6 +100,7 @@
                 <artifactId>chat-common-core</artifactId>
                 <version>${hobby.version}</version>
             </dependency>
+
             <dependency>
                 <groupId>com.hobby</groupId>
                 <artifactId>chat-common-redis</artifactId>
