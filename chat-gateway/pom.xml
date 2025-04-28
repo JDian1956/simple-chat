@@ -19,5 +19,10 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-gateway</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.hobby</groupId>
+            <artifactId>chat-common-core</artifactId>
+        </dependency>
     </dependencies>
 </project>
