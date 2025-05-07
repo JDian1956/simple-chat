@@ -1,7 +1,10 @@
 package com.hobby.auth.web.controller;
 
 import com.hobby.auth.entity.LoginBody;
+import com.hobby.auth.web.pojo.SysUser;
+import com.hobby.auth.web.service.SysUserService;
 import com.hobby.core.pojo.ResponseResult;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,6 +13,9 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 public class LoginController {
+
+    @Autowired
+    private SysUserService sysUserService;
 
     @PostMapping("/login")
     public ResponseResult<LoginBody> login(@Validated @RequestBody LoginBody loginBody) {
@@ -24,5 +30,11 @@ public class LoginController {
     @GetMapping("/getUserInfo")
     public <T> ResponseResult<T> getUserInfo() {
         return ResponseResult.success();
+    }
+
+    @GetMapping("/test/1")
+    public ResponseResult<SysUser> test1() {
+        SysUser admin = sysUserService.queryByUsername("admin");
+        return ResponseResult.success(admin);
     }
 }
