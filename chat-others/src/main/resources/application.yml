@@ -7,6 +7,7 @@ spring:
     profiles:
         active: dev
 
+
     thymeleaf:
         servlet:
             content-type: text/html
@@ -15,5 +16,23 @@ spring:
             suffix: .html
             cache: false
             enable-spring-el-compiler: false
+    rabbitmq:
+        host: 192.168.2.201
+        virtual-host: /
+        username: root
+        password: pass@word1
+        port: 5672
+        # 发送者
+        connection-timeout: 1s
+        # 消息发送失败重试机制
+        template:
+            retry:
+                max-attempts: 3
+                multiplier: 1
+                initial-interval: 2000ms
+                enabled: true
+        # 发送者确认机制
+        publisher-confirm-type: correlated
+        publisher-returns: true
 
 
