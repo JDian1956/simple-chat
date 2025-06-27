@@ -1,6 +1,7 @@
 package com.hobby.others.client;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.amqp.core.MessageDeliveryMode;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Component;
@@ -19,7 +20,10 @@ public class RabbitClients {
     private final static String COMMON_ROUTING_KEY = "common";
 
     public void sendCommonMessage(String message) {
-        rabbitTemplate.convertAndSend(COMMON_EXCHANGE, COMMON_ROUTING_KEY, message);
+        rabbitTemplate.convertAndSend(COMMON_EXCHANGE, COMMON_ROUTING_KEY, message, messageDeliveryMode -> {
+            messageDeliveryMode.getMessageProperties().setDeliveryMode(MessageDeliveryMode.PERSISTENT);
+            return messageDeliveryMode;
+        });
     }
 
     public void sendCommonMessageCorrelated(Object message) {
@@ -30,6 +34,9 @@ public class RabbitClients {
                 System.out.println("消息发送失败");
             }
         });
-        rabbitTemplate.convertAndSend(COMMON_EXCHANGE, COMMON_ROUTING_KEY, message, correlationData);
+        rabbitTemplate.convertAndSend(COMMON_EXCHANGE, COMMON_ROUTING_KEY, message, messageDeliveryMode -> {
+            messageDeliveryMode.getMessageProperties().setDeliveryMode(MessageDeliveryMode.PERSISTENT);
+            return messageDeliveryMode;
+        }, correlationData);
     }
 }

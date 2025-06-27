@@ -6,33 +6,20 @@ spring:
         name: chat-others
     profiles:
         active: dev
+    cloud:
+        nacos:
+            discovery:
+                server-addr: 192.168.2.201:8848
+                namespace: 21e021a4-2f24-43f8-8f01-0dfe1eef2c55
+                group: DEFAULT_GROUP
+            config:
+                server-addr: 192.168.2.201:8848
+                namespace: 21e021a4-2f24-43f8-8f01-0dfe1eef2c55
+                group: DEFAULT_GROUP
+    config:
+        import:
+            - nacos:application-${spring.profiles.active}.yml?refreshEnabled=true
+            - nacos:${spring.application.name}-${spring.profiles.active}.yml?refreshEnabled=true
 
-
-    thymeleaf:
-        servlet:
-            content-type: text/html
-            mode: HTML5
-            prefix: classpath:/templates/
-            suffix: .html
-            cache: false
-            enable-spring-el-compiler: false
-    rabbitmq:
-        host: 192.168.2.201
-        virtual-host: /
-        username: root
-        password: pass@word1
-        port: 5672
-        # 发送者
-        connection-timeout: 1s
-        # 消息发送失败重试机制
-        template:
-            retry:
-                max-attempts: 3
-                multiplier: 1
-                initial-interval: 2000ms
-                enabled: true
-        # 发送者确认机制
-        publisher-confirm-type: correlated
-        publisher-returns: true
 
 

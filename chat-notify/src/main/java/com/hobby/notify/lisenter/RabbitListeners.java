@@ -19,7 +19,7 @@ public class RabbitListeners {
 
     @RabbitListener(
             bindings = @QueueBinding(
-                    value = @Queue(name = "email.queue"),
+                    value = @Queue(name = "email.queue",durable = "true"),
                     exchange = @Exchange(name = "common-exchange", type = "direct"),
                     key = "common"
             ),

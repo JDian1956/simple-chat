@@ -3,6 +3,7 @@ package com.hobby.notify.service;
 import com.hobby.notify.entity.AccountEntity;
 import com.hobby.notify.mapper.AccountMapper;
 import lombok.RequiredArgsConstructor;
+import org.apache.seata.spring.annotation.GlobalTransactional;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,19 +16,19 @@ import org.springframework.transaction.annotation.Transactional;
 public class AccountService {
     private final AccountMapper accountMapper;
 
-//    @GlobalTransactional
+    @GlobalTransactional
     @Transactional(rollbackFor = Exception.class)
     public int insert(AccountEntity entity) {
         return accountMapper.insert(entity);
     }
 
-//    @GlobalTransactional
+    @GlobalTransactional
     @Transactional(rollbackFor = Exception.class)
     public int deleteById(Long id) {
         return accountMapper.deleteById(id);
     }
 
-//    @GlobalTransactional
+    @GlobalTransactional
     @Transactional(rollbackFor = Exception.class)
     public int updateById(AccountEntity entity) {
         return accountMapper.updateById(entity);
