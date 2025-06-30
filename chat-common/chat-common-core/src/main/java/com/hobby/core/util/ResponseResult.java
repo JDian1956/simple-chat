@@ -1,4 +1,4 @@
-package com.hobby.core.pojo;
+package com.hobby.core.util;
 
 import com.hobby.core.enums.HttpStatusEnums;
 

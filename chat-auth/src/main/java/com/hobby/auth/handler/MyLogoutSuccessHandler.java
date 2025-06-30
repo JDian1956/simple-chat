@@ -1,7 +1,7 @@
 package com.hobby.auth.handler;
 
 import com.alibaba.fastjson2.JSON;
-import com.hobby.core.pojo.ResponseResult;
+import com.hobby.core.util.ResponseResult;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

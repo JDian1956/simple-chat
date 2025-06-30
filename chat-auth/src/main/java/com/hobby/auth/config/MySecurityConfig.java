@@ -73,7 +73,7 @@ public class MySecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests((authorize) -> authorize
                         // 登录接口, 允许匿名访问
-                        .requestMatchers("/login", "/test/*").permitAll()
+                        .requestMatchers("/login", "/test").permitAll()
                         // 其他接口需要身份验证
                         .anyRequest().authenticated()
 

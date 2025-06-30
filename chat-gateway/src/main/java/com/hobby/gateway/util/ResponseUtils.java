@@ -1,7 +1,7 @@
 package com.hobby.gateway.util;
 
 import com.hobby.core.enums.HttpStatusEnums;
-import com.hobby.core.pojo.ResponseResult;
+import com.hobby.core.util.ResponseResult;
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

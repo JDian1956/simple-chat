@@ -1,17 +1,19 @@
 server:
-    port: 9091
+    port: 8090
+    servlet:
+        context-path: /
 
 spring:
     application:
-        name: others-server
+        name: auth-server
     profiles:
         active: dev
     cloud:
         nacos:
             discovery:
                 server-addr: 192.168.2.201:8848
-                namespace: 21e021a4-2f24-43f8-8f01-0dfe1eef2c55
                 group: DEFAULT_GROUP
+                namespace: 21e021a4-2f24-43f8-8f01-0dfe1eef2c55
             config:
                 server-addr: 192.168.2.201:8848
                 namespace: 21e021a4-2f24-43f8-8f01-0dfe1eef2c55
@@ -20,5 +22,3 @@ spring:
         import:
             - nacos:application-${spring.profiles.active}.yml?refreshEnabled=true
             - nacos:${spring.application.name}-${spring.profiles.active}.yml?refreshEnabled=true
-
-
