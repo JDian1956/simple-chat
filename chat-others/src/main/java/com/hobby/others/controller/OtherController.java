@@ -12,10 +12,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class OtherController {
 
+    private final RemoteNotifyService remoteNotifyService;
+    private final RemoteAuthService remoteAuthService;
+
     @Autowired
-    private RemoteNotifyService remoteNotifyService;
-    @Autowired
-    private RemoteAuthService remoteAuthService;
+    public OtherController(RemoteNotifyService remoteNotifyService,
+                           RemoteAuthService remoteAuthService) {
+        this.remoteNotifyService = remoteNotifyService;
+        this.remoteAuthService = remoteAuthService;
+    }
 
     @GetMapping("/others")
     public String getOthers() {

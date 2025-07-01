@@ -22,3 +22,11 @@ spring:
         import:
             - nacos:application-${spring.profiles.active}.yml?refreshEnabled=true
             - nacos:${spring.application.name}-${spring.profiles.active}.yml?refreshEnabled=true
+
+#openfeign:
+#    clients:
+#        config:
+#            default:
+#                logLevel: full
+#                connectTimeout: 5000
+#                readTimeout: 5000

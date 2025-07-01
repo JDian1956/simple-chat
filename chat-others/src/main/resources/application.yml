@@ -16,9 +16,16 @@ spring:
                 server-addr: 192.168.2.201:8848
                 namespace: 21e021a4-2f24-43f8-8f01-0dfe1eef2c55
                 group: DEFAULT_GROUP
+        openfeign:
+            compression:
+                request:
+                    enabled: true
+                    min-request-size: 2048
+                    mime-types: application/json,application/xml,text/xml,text/html,text/plain
+                response:
+                    enabled: true
     config:
         import:
             - nacos:application-${spring.profiles.active}.yml?refreshEnabled=true
             - nacos:${spring.application.name}-${spring.profiles.active}.yml?refreshEnabled=true
-
 

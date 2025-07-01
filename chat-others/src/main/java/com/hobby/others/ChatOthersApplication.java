@@ -10,10 +10,10 @@ import org.springframework.context.annotation.ComponentScan;
 /**
  * @author Harris
  */
-@EnableDiscoveryClient
-@EnableFeignClients(basePackages = "com.hobby.api")
-@SpringBootApplication
 @ComponentScan(basePackages = "com.hobby")
+@EnableFeignClients(basePackages = "com.hobby.api")
+@EnableDiscoveryClient
+@SpringBootApplication
 public class ChatOthersApplication {
     public static void main(String[] args) {
         ConfigurableApplicationContext run = SpringApplication.run(ChatOthersApplication.class, args);
