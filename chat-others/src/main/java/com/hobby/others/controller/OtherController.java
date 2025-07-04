@@ -2,6 +2,7 @@ package com.hobby.others.controller;
 
 import com.hobby.api.RemoteAuthService;
 import com.hobby.api.RemoteNotifyService;
+import com.hobby.core.util.ResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,7 +34,7 @@ public class OtherController {
     }
 
     @GetMapping("/auth")
-    public String getAuth() {
+    public <T> ResponseResult<T> getAuth() {
         return remoteAuthService.getDemo();
     }
 }

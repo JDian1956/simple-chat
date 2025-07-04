@@ -1,6 +1,7 @@
 package com.hobby.api;
 
 import com.hobby.core.config.OpenFeignConfig;
+import com.hobby.core.util.ResponseResult;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -11,5 +12,5 @@ import org.springframework.web.bind.annotation.GetMapping;
 public interface RemoteAuthService {
 
     @GetMapping("/test")
-    public String getDemo();
+    public <T> ResponseResult<T> getDemo();
 }
