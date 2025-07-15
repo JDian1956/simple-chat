@@ -23,7 +23,7 @@ public class OtherController {
         this.remoteAuthService = remoteAuthService;
     }
 
-    @GetMapping("/others")
+    @GetMapping("/test")
     public String getOthers() {
         return "others";
     }

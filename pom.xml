@@ -157,6 +157,12 @@
 
             <dependency>
                 <groupId>com.hobby</groupId>
+                <artifactId>chat-common-security</artifactId>
+                <version>${hobby.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.hobby</groupId>
                 <artifactId>chat-api</artifactId>
                 <version>${hobby.version}</version>
             </dependency>

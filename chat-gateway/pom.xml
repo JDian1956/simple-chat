@@ -35,5 +35,10 @@
             <groupId>com.hobby</groupId>
             <artifactId>chat-common-core</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.hobby</groupId>
+            <artifactId>chat-common-security</artifactId>
+        </dependency>
     </dependencies>
 </project>

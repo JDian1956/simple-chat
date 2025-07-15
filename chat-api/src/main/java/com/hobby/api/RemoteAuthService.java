@@ -11,6 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 @FeignClient(name = "auth-server", configuration = OpenFeignConfig.class)
 public interface RemoteAuthService {
 
-    @GetMapping("/test")
+    @GetMapping("/auth/test")
     public <T> ResponseResult<T> getDemo();
 }

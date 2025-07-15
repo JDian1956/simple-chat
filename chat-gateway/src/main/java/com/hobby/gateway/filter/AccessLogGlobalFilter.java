@@ -17,12 +17,11 @@ import java.net.InetSocketAddress;
  * @author Harris
  */
 @Slf4j
-@Order(Integer.MIN_VALUE)
+@Order(0)
 @Component
 public class AccessLogGlobalFilter implements GlobalFilter {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-        log.info("[网关日志]请求路径:{},请求参数:{}", exchange.getRequest().getPath(), exchange.getRequest().getQueryParams());
         ServerHttpRequest request = exchange.getRequest();
         String path = request.getPath().pathWithinApplication().value();
         InetSocketAddress remoteAddress = request.getRemoteAddress();

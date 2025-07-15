@@ -3,21 +3,22 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.hobby</groupId>
-        <artifactId>simple-chat</artifactId>
+        <artifactId>chat-common</artifactId>
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>chat-common</artifactId>
-    <packaging>pom</packaging>
-
-    <modules>
-        <module>chat-common-redis</module>
-        <module>chat-common-core</module>
-        <module>chat-common-security</module>
-    </modules>
+    <artifactId>chat-common-security</artifactId>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>17</java.version>
     </properties>
+
+    <dependencies>
+        <!-- Spring AOP -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+    </dependencies>
 </project>

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class NotifyController {
 
-    @GetMapping("/notify")
+    @GetMapping("/test")
     public String getNotify() {
         return "Notify";
     }

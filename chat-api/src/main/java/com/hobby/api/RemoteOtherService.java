@@ -10,6 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 @FeignClient(name = "other-server", configuration = OpenFeignConfig.class)
 public interface RemoteOtherService {
 
-    @GetMapping("/others")
+    @GetMapping("/others/test")
     public String getOthers();
 }

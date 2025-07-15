@@ -10,6 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 @FeignClient(name = "notify-server", configuration = OpenFeignConfig.class)
 public interface RemoteNotifyService {
 
-    @GetMapping("/notify")
+    @GetMapping("/notify/test")
     public String getNotify();
 }
