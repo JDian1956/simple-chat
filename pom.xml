@@ -14,8 +14,6 @@
     <modules>
         <module>chat-common</module>
         <module>chat-gateway</module>
-        <module>chat-websocket</module>
-        <module>chat-stomp</module>
         <module>chat-others</module>
         <module>chat-auth</module>
         <module>chat-notify</module>
@@ -31,7 +29,7 @@
         <spring-cloud.version>2023.0.5</spring-cloud.version>
         <spring-cloud-alibaba.version>2023.0.1.0</spring-cloud-alibaba.version>
         <spring-boot.version>3.3.11</spring-boot.version>
-        <commons-lang3.version>3.17.0</commons-lang3.version>
+        <commons-lang3.version>3.18.0</commons-lang3.version>
         <spring-framework.version>6.1.19</spring-framework.version>
         <druid.version>1.2.24</druid.version>
         <mybatis-plus.version>3.5.11</mybatis-plus.version>
@@ -41,6 +39,7 @@
         <mysql.version>8.0.28</mysql.version>
         <feign-hc5.version>13.6</feign-hc5.version>
         <feign-okhttp.version>13.6</feign-okhttp.version>
+        <dynamic-ds.version>4.3.1</dynamic-ds.version>
     </properties>
 
     <dependencyManagement>
@@ -52,7 +51,30 @@
                 <version>${spring-framework.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.springframework</groupId>
+                        <artifactId>spring-context</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.springframework</groupId>
+                        <artifactId>spring-web</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
+
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
+                <version>6.1.20</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-web</artifactId>
+                <version>6.1.20</version>
+            </dependency>
+
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
@@ -84,21 +106,45 @@
             </dependency>
 
             <dependency>
-                <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
-                <version>${mybatis-plus.version}</version>
-            </dependency>
-
-            <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
                 <version>${mysql.version}</version>
             </dependency>
 
             <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-jsqlparser</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>dynamic-datasource-spring-boot3-starter</artifactId>
+                <version>${dynamic-ds.version}</version>
+            </dependency>
+
+            <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>${commons-lang3.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>commons-fileupload</groupId>
+                        <artifactId>commons-fileupload</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <dependency>
+                <groupId>commons-fileupload</groupId>
+                <artifactId>commons-fileupload</artifactId>
+                <version>1.6.0</version>
             </dependency>
 
             <dependency>
@@ -123,12 +169,6 @@
                 <groupId>org.mapstruct</groupId>
                 <artifactId>mapstruct-processor</artifactId>
                 <version>${mapstruct.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.apache.rocketmq</groupId>
-                <artifactId>rocketmq-client</artifactId>
-                <version>5.3.2</version>
             </dependency>
 
             <dependency>
@@ -164,6 +204,12 @@
             <dependency>
                 <groupId>com.hobby</groupId>
                 <artifactId>chat-api</artifactId>
+                <version>${hobby.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.hobby</groupId>
+                <artifactId>chat-common-datasource</artifactId>
                 <version>${hobby.version}</version>
             </dependency>
         </dependencies>

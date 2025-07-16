@@ -29,7 +29,7 @@ public class ChatOthersApplication {
 
         RabbitClients rabbitClients = run.getBean(RabbitClients.class);
         int threadCount = 5;
-        int totalMessages = 500_000;
+        int totalMessages = 5_000;
         int messagesPerThread = totalMessages / threadCount;
 
         ExecutorService executorService = Executors.newFixedThreadPool(threadCount);

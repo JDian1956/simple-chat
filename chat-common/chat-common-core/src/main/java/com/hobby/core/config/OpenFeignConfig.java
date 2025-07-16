@@ -10,6 +10,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * @author Harris
+ * openfeign 配置类
  */
 @Configuration
 public class OpenFeignConfig {

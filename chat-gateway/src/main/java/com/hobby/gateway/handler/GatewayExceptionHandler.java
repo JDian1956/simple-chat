@@ -1,7 +1,7 @@
 package com.hobby.gateway.handler;
 
 import com.hobby.core.enums.HttpStatusEnums;
-import com.hobby.gateway.util.ResponseUtils;
+import com.hobby.core.util.ServletUtils;
 import org.slf4j.Logger;
 import org.springframework.boot.web.reactive.error.ErrorWebExceptionHandler;
 import org.springframework.cloud.gateway.support.NotFoundException;
@@ -32,11 +32,11 @@ public class GatewayExceptionHandler implements ErrorWebExceptionHandler {
         logger.error("[网关异常处理]请求路径:{},异常信息:{}", exchange.getRequest().getPath(), ex.getMessage());
 
         if (ex instanceof NotFoundException) {
-            return ResponseUtils.webFluxResponse(response, HttpStatusEnums.NOT_FOUND);
+            return ServletUtils.webFluxResponse(response, HttpStatusEnums.NOT_FOUND);
         } else if (ex instanceof ResponseStatusException) {
-            return ResponseUtils.webFluxResponse(response, ex.getMessage());
+            return ServletUtils.webFluxResponse(response, ex.getMessage());
         } else {
-            return ResponseUtils.webFluxResponse(response, HttpStatusEnums.SERVER_ERROR);
+            return ServletUtils.webFluxResponse(response, HttpStatusEnums.SERVER_ERROR);
         }
     }
 }

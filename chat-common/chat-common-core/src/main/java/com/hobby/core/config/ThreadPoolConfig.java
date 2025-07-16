@@ -8,6 +8,8 @@ import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * @author Harris
+ *
+ * 线程池配置
  */
 @Component
 public class ThreadPoolConfig {

@@ -7,22 +7,17 @@
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>chat-common-redis</artifactId>
+    <artifactId>chat-common-log</artifactId>
 
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>17</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.hobby</groupId>
-            <artifactId>chat-common-core</artifactId>
+            <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
     </dependencies>
 </project>

@@ -11,6 +11,7 @@ import org.springframework.context.annotation.ComponentScan;
 * 
 */
 @ComponentScan(basePackages = "com.hobby")
+@EnableFeignClients(basePackages = "com.hobby.api")
 @EnableDiscoveryClient
 @SpringBootApplication
 public class ChatAuthApplication {

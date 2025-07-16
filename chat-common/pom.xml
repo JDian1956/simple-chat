@@ -14,6 +14,8 @@
         <module>chat-common-redis</module>
         <module>chat-common-core</module>
         <module>chat-common-security</module>
+        <module>chat-common-log</module>
+        <module>chat-common-datasource</module>
     </modules>
 
     <properties>

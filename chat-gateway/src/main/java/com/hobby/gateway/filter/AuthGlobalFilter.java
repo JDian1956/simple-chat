@@ -2,7 +2,7 @@ package com.hobby.gateway.filter;
 
 import com.hobby.core.enums.HttpStatusEnums;
 import com.hobby.core.util.StringUtils;
-import com.hobby.gateway.util.ResponseUtils;
+import com.hobby.core.util.ServletUtils;
 import com.hobby.security.constants.SecurityConstants;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
@@ -32,7 +32,7 @@ public class AuthGlobalFilter implements GlobalFilter {
         }
         String token = getToken(request);
         if (StringUtils.isBlank(token)) {
-            return unauthorized(exchange, "令牌不能为空");
+            //return unauthorized(exchange, "令牌不能为空");
         }
 
         return chain.filter(exchange);
@@ -48,6 +48,6 @@ public class AuthGlobalFilter implements GlobalFilter {
     }
 
     private Mono<Void> unauthorized(ServerWebExchange exchange, String msg) {
-        return ResponseUtils.webFluxResponse(exchange.getResponse(), msg, HttpStatusEnums.UNAUTHORIZED);
+        return ServletUtils.webFluxResponse(exchange.getResponse(), HttpStatusEnums.UNAUTHORIZED, msg);
     }
 }
