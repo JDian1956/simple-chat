@@ -62,7 +62,7 @@
 
 ## 2. 单例模式（com.hobby.singleton_pattern）
 
-#### Singleton1 饿汉模式
+#### 饿汉模式（[查看 Singleton1.java](../chat-pattern/src/main/java/com/hobby/singleton_pattern/Singleton1.java)）
 
 * 优点是线程安全的，只有一个实例。缺点是即使没有调用getInstance()方法，instance实例在类加载时被初始化了。
 
