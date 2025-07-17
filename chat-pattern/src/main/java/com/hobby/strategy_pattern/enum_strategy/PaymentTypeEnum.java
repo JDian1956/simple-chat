@@ -1,6 +1,6 @@
 package com.hobby.strategy_pattern.enum_strategy;
 
-import com.hobby.strategy_pattern.base_strategy.Strategy;
+import com.hobby.payment.interfaces.Payment;
 
 /**
  * 枚举策略模式
@@ -19,14 +19,14 @@ public enum PaymentTypeEnum {
     WX_PAY(PaymentStrategyProvider::weChatPay),
     ;
 
-    private final Strategy strategy;
+    private final Payment payment;
 
-    PaymentTypeEnum(Strategy  strategy){
-        this.strategy = strategy;
+    PaymentTypeEnum(Payment  payment){
+        this.payment = payment;
     }
 
     public Double pay(Double amount){
-        return strategy.pay(amount);
+        return payment.pay(amount);
     }
 
 }
