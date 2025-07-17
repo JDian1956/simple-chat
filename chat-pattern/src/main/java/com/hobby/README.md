@@ -60,49 +60,49 @@
     * 提高可读性和可测试性。
     * 减少副作用和错误的发生概率。
 
-## 2. 单例模式（com.hobby.singleton_pattern）
+## 2. 单例模式（[查看示例](./singleton_pattern)）
 
-#### 饿汉模式（[查看 Singleton1.java](./singleton_pattern/Singleton1.java)）
+#### 饿汉模式（[查看示例](./singleton_pattern/Singleton1.java)）
 
 * 优点是线程安全的，只有一个实例。缺点是即使没有调用getInstance()方法，instance实例在类加载时被初始化了。
 
-#### Singleton2 懒汉模式，非线程安全
+#### 懒汉模式，非线程安全（[查看示例](./singleton_pattern/Singleton2.java)）
 
 * 判断了当instance不等于空时，才进行初始化。但是当多个线程同时执行到if(instance==null)的时候，一个线程执行完new Singleton()，其他线程也会接着执行，导致new出多个实例。
 
-#### Singleton3 懒汉模式，线程安全
+#### 懒汉模式，线程安全（[查看示例](./singleton_pattern/Singleton3.java)）
 
 * 在getInstance()方法上增加了synchronized锁，实现只有一个线程进行实例化对象，但是instance已经被实例化过，还是只能有一个线程访问getInstance()方法，性能急剧下降。
 
-#### Singleton4 双重检查锁定实现的单例模式（非线程安全）
+#### 双重检查锁定实现的单例模式，非线程安全（[查看示例](./singleton_pattern/Singleton4.java)）
 
 * 虽然通过两次检查 instance == null 来减少同步开销， 并确保最多只会有一个线程创建实例，但由于 JVM 的指令重排序机制， 仍然存在线程安全问题。
 
-#### Singleton5 双重检查锁模式（线程安全）
+#### 双重检查锁模式，线程安全（[查看示例](./singleton_pattern/Singleton5.java)）
 
 * instance对象用了volatile修饰，会禁止jvm对该对象的指令重排序，保证线程安全
 
-#### Singleton6 使用静态内部类实现的单例模式（推荐）
+#### 使用静态内部类实现的单例模式，推荐（[查看示例](./singleton_pattern/Singleton6.java)）
 
 * 懒加载：仅在首次调用 getInstance() 时初始化
 * 线程安全：由 JVM 类加载机制保障
 * 高性能：无需加锁或同步操作
 
-#### Singleton7 枚举单例模式（推荐）
+#### 枚举单例模式，推荐（[查看示例](./singleton_pattern/Singleton7.java)）
 
 * 枚举单例模式，线程安全，性能高
 
-## 3. 策略模式（com.hobby.strategy_pattern）
+## 3. 策略模式（[查看示例](./strategy_pattern)）
 
-#### strategy1 基本策略模式
+#### 基本策略模式（[查看示例](./strategy_pattern/strategy1)）
 
 * 整体显得非常笨重不是很灵活，不推荐使用
 
-#### strategy2 枚举策略模式
+#### 枚举策略模式（[查看示例](./strategy_pattern/strategy2)）
 
 * 其具有代码简洁，线程安全，避免反射攻击，易于扩展的特点，但是灵活性受限，功能受限（策略逻辑复杂，枚举类可能会变得臃肿，不适合复杂的业务场景），复用性较差
 
-#### strategy3 spring增强 策略模式（未实现）
+#### spring增强 策略模式（未实现）（[查看示例](./strategy_pattern/strategy3)）
 
 * spring增强策略模式 相比基本策略模式更复杂，但它更适合大型项目或微服务架构中对可扩展性和可维护性要求较高的场景
 * 使用场景
@@ -111,9 +111,9 @@
     * 多渠道消息发送（短信、邮件、站内信等）
     * 动态路由处理（根据请求参数决定执行逻辑）
 
-## 4. 工厂模式（com.hobby.factory_pattern）
+## 4. 工厂模式（[查看示例](./factory_pattern))
 
-#### 简单工厂模式，也称为 静态工厂方法模式（com.hobby.factory_pattern.simple_factory）
+#### 简单工厂模式，也称为 静态工厂方法模式（[查看示例](./factory_pattern/simple_factory))
 
 * 简单工厂模式（Simple Factory Pattern）是一种创建型设计模式，它通过一个工厂类来统一创建对象的实例，从而解耦调用方与具体类之间的依赖关系。
 * 通常包含以下三个角色：
