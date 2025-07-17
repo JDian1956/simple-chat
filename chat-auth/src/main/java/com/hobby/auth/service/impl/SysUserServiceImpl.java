@@ -1,7 +1,6 @@
 package com.hobby.auth.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.hobby.api.RemoteNotifyService;
 import com.hobby.api.entity.AccountEntity;
@@ -16,7 +15,6 @@ import org.apache.seata.spring.annotation.GlobalTransactional;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 
 /**
  * @author Harris
@@ -62,8 +60,6 @@ public class SysUserServiceImpl implements SysUserService {
         Page<SysUser> objectPage = new Page<>(current, size);
         Page<SysUser> pages = userMapper.selectPage(objectPage, null);
 
-        List<SysUser> records = pages.getRecords();
-
-        return PageResponse.of(pages, UserConvertor.INSTANCE.toDTO(records));
+        return PageResponse.of(pages, UserConvertor.INSTANCE.toDTO(pages.getRecords()));
     }
 }
