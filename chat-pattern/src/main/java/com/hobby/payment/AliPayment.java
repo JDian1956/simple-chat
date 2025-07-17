@@ -1,16 +1,17 @@
-package com.hobby.factory_pattern;
+package com.hobby.payment;
 
-import com.hobby.factory_pattern.IPay;
+
+import com.hobby.payment.interfaces.Payment;
 
 /**
  * @author Harris
  */
-public class AliPay implements IPay {
+public class AliPayment implements Payment {
     /**
      * 支付
      *
-     * @param price 金额
-     * @return 金额
+     * @param price
+     * @return
      */
     @Override
     public Double pay(Double price) {

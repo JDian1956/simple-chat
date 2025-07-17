@@ -1,11 +1,11 @@
-package com.hobby.factory_pattern;
+package com.hobby.payment;
 
-import com.hobby.factory_pattern.IPay;
+import com.hobby.payment.interfaces.Payment;
 
 /**
  * @author Harris
  */
-public class BankCardPay implements IPay {
+public class BankCardPayment implements Payment {
     /**
      * 支付
      *

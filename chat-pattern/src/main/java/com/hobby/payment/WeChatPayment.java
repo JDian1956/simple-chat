@@ -1,9 +1,12 @@
-package com.hobby.strategy_pattern.strategy1;
+package com.hobby.payment;
+
+
+import com.hobby.payment.interfaces.Payment;
 
 /**
  * @author Harris
  */
-public class WeChatPay implements  Strategy{
+public class WeChatPayment implements Payment {
     /**
      * 支付
      *
@@ -13,6 +16,6 @@ public class WeChatPay implements  Strategy{
     @Override
     public Double pay(Double price) {
         System.out.println("微信支付");
-        return price*2;
+        return price * 10;
     }
 }

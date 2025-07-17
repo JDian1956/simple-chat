@@ -1,9 +1,9 @@
-package com.hobby.strategy_pattern.strategy2;
+package com.hobby.strategy_pattern.enum_strategy;
 
 /**
  * @author Harris
  */
-public class PayStrategyProvider {
+public class PaymentStrategyProvider {
 
     public static Double aliPay(Double price) {
         System.out.println("使用支付宝支付");

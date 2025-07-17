@@ -1,9 +1,9 @@
-package com.hobby.factory_pattern;
+package com.hobby.payment.interfaces;
 
 /**
  * @author Harris
  */
-public interface IPay {
+public interface Payment {
     /**
      * 支付
      * @param price 金额
