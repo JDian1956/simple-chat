@@ -1,6 +1,6 @@
 ## 1. 设计模式的六大原则
 
-#### 开放封闭原则（Open Close Principle）
+#### 1.1 开放封闭原则（Open Close Principle）
 
 * 思想：对扩展开放，对修改关闭。
 * 描述：当需求发生变化时，应通过新增代码来扩展系统的行为，而不是修改已有的代码。这样可以避免影响已有功能，提高系统的稳定性。
@@ -8,7 +8,7 @@
     * 提高代码可维护性，降低因修改带来的风险。
     * 支持灵活的系统扩展，适应未来的变化。
 
-#### 里氏代换原则（Liskov Substitution Principle）
+#### 1.2 里氏代换原则（Liskov Substitution Principle）
 
 * 思想：任何基类出现的地方都可以被其子类无缝替换，而不破坏程序的正确性。
 * 描述：
@@ -19,7 +19,7 @@
     * 提高程序的健壮性和可扩展性。
     * 保证继承结构的合理性，避免“强盗式”继承。
 
-#### 依赖倒转原则（Dependence Inversion Principle）
+#### 1.3 依赖倒转原则（Dependence Inversion Principle）
 
 * 思想：面向接口编程，而不是面向实现编程。
 * 描述：
@@ -29,7 +29,7 @@
     * 降低模块之间的耦合度。
     * 增加系统的灵活性和可测试性。
 
-#### 接口隔离原则（Interface Segregation Principle）
+#### 1.4 接口隔离原则（Interface Segregation Principle）
 
 * 思想：客户端不应该依赖它不需要的接口。
 * 描述：
@@ -39,7 +39,7 @@
     * 避免接口污染，提高接口的内聚性。
     * 减少不必要的实现类代码冗余。
 
-#### 迪米特法则（最少知道原则）（Demeter Principle）
+#### 1.5 迪米特法则（最少知道原则）（Demeter Principle）
 
 * 思想：一个对象应当对其他对象保持最少的了解。
 * 描述：
@@ -49,7 +49,7 @@
     * 降低类之间的耦合度。
     * 提高系统的可维护性和可读性。
 
-#### 单一职责原则（Principle of single responsibility）
+#### 1.6 单一职责原则（Principle of single responsibility）
 
 * 思想：一个类/接口/方法只负责一项职责。
 * 描述：
@@ -62,47 +62,64 @@
 
 ## 2. 单例模式（[查看示例](./singleton_pattern)）
 
-#### 饿汉模式（[查看示例](./singleton_pattern/Singleton1.java)）
+#### 2.1 饿汉模式（[查看示例](./singleton_pattern/Singleton1.java)）
 
-* 优点是线程安全的，只有一个实例。缺点是即使没有调用getInstance()方法，instance实例在类加载时被初始化了。
+  * 饿汉模式，也叫静态常量模式，在类加载时就创建实例，实例对象是静态的，类加载时就完成实例化，线程安全，但无法实现延迟加载。
+  * 优点：
+      * 实现简单：代码逻辑清晰，易于理解和实现。
+      * 线程安全：由于实例在类加载时就创建好了，因此在多线程环境下使用是安全的，无需额外的同步控制。
+  * 缺点：
+      * 资源浪费：如果该实例占用大量资源（如内存、IO等），而实际运行中又未使用到该实例，则会造成资源浪费。
+      * 加载时机不可控：类在加载时就会创建实例，如果实例的创建过程比较耗时，会影响系统启动性能。
 
-#### 懒汉模式，非线程安全（[查看示例](./singleton_pattern/Singleton2.java)）
+#### 2.2 懒汉模式（Lazy Initialization）
 
-* 判断了当instance不等于空时，才进行初始化。但是当多个线程同时执行到if(instance==null)的时候，一个线程执行完new Singleton()，其他线程也会接着执行，导致new出多个实例。
+##### 2.2.1 非线程安全（[查看示例](./singleton_pattern/Singleton2.java)）
 
-#### 懒汉模式，线程安全（[查看示例](./singleton_pattern/Singleton3.java)）
+* 特点：首次使用时创建实例，未加同步控制，多线程环境下不安全。
+* 优点：延迟加载，实现简单。
+* 缺点：多线程可能创建多个实例。
 
-* 在getInstance()方法上增加了synchronized锁，实现只有一个线程进行实例化对象，但是instance已经被实例化过，还是只能有一个线程访问getInstance()方法，性能急剧下降。
+##### 2.2.2 线程安全（加 synchronized）（[查看示例](./singleton_pattern/Singleton3.java)）
 
-#### 双重检查锁定实现的单例模式，非线程安全（[查看示例](./singleton_pattern/Singleton4.java)）
+* 特点：通过 synchronized 保证线程安全，但性能较差。
+* 优点：线程安全
+* 缺点：每次调用 getInstance() 都需同步，性能下降。
 
-* 虽然通过两次检查 instance == null 来减少同步开销， 并确保最多只会有一个线程创建实例，但由于 JVM 的指令重排序机制， 仍然存在线程安全问题。
+#### 2.3 双重检查锁定（Double-Checked Locking）
 
-#### 双重检查锁模式，线程安全（[查看示例](./singleton_pattern/Singleton5.java)）
+##### 2.3.1 非线程安全 （[查看示例](./singleton_pattern/Singleton4.java)）
 
-* instance对象用了volatile修饰，会禁止jvm对该对象的指令重排序，保证线程安全
+* 特点：首次使用时创建实例，未加同步控制，多线程环境下不安全。
+* 优点：延迟加载，实现简单。
+* 缺点：多线程可能创建多个实例。
 
-#### 使用静态内部类实现的单例模式，推荐（[查看示例](./singleton_pattern/Singleton6.java)）
+##### 2.3.2 线程安全（加 volatile）（[查看示例](./singleton_pattern/Singleton5.java)）
 
-* 懒加载：仅在首次调用 getInstance() 时初始化
-* 线程安全：由 JVM 类加载机制保障
-* 高性能：无需加锁或同步操作
+* 特点：使用 volatile 禁止指令重排序，确保线程安全。
+* 优点：线程安全 + 延迟加载 + 性能较好。
 
-#### 枚举单例模式，推荐（[查看示例](./singleton_pattern/Singleton7.java)）
+#### 2.4 静态内部类实现（推荐）（[查看示例](./singleton_pattern/Singleton6.java)）
 
-* 枚举单例模式，线程安全，性能高
+* 特点：利用 JVM 类加载机制实现懒加载和线程安全。
+* 优点：线程安全、延迟加载、性能高。
+
+#### 2.5 枚举实现（推荐）（[查看示例](./singleton_pattern/Singleton7.java)）
+
+* 特点：通过枚举实现单例，天然线程安全且防止反射攻击。
+* 优点：简洁、线程安全、防止序列化/反射破坏单例。
 
 ## 3. 策略模式（[查看示例](./strategy_pattern)）
 
-#### 基本策略模式（[查看示例](./strategy_pattern/base_strategy/BaseStrategyDemo.java)）
+#### 3.1 基本策略模式（[查看示例](./strategy_pattern/base_strategy/BaseStrategyDemo.java)）
 
 * 整体显得非常笨重不是很灵活，不推荐使用
 
-#### 枚举策略模式（[查看示例](./strategy_pattern/enum_strategy/EnumStrategyPatternDemo.java)）
+#### 3.2 枚举策略模式（[查看示例](./strategy_pattern/enum_strategy/EnumStrategyPatternDemo.java)）
 
 * 其具有代码简洁，线程安全，避免反射攻击，易于扩展的特点，但是灵活性受限，功能受限（策略逻辑复杂，枚举类可能会变得臃肿，不适合复杂的业务场景），复用性较差
 
-#### spring增强 策略模式（未实现）（[查看示例](./strategy_pattern/spring_enhance_strategy)）
+#### 3.3 spring增强 策略模式（未实现）（[查看示例](./strategy_pattern/spring_enhance_strategy)）
 
 * spring增强策略模式 相比基本策略模式更复杂，但它更适合大型项目或微服务架构中对可扩展性和可维护性要求较高的场景
 * 使用场景
@@ -113,7 +130,7 @@
 
 ## 4. 工厂模式（[查看示例](./factory_pattern))
 
-#### 简单工厂模式（Simple Factory Pattern），也称为静态工厂方法模式（[查看示例](./factory_pattern/simple_factory/SimpleFactoryDemo.java))
+#### 4.1 简单工厂模式（Simple Factory Pattern），也称为静态工厂方法模式（[查看示例](./factory_pattern/simple_factory/SimpleFactoryDemo.java))
 
 * 简单工厂模式是一种创建型设计模式，它通过一个工厂类来统一创建对象的实例，从而解耦调用方与具体类之间的依赖关系。
 * 核心结构：
@@ -129,7 +146,7 @@
   * 工厂职责过重：所有创建逻辑都在一个类中，容易变得臃肿
   * 不属于GoF 23种设计模式：是一种简化版的工厂模式，不是标准模式
 
-#### 工厂方法模式（Factory Method Pattern）（[查看示例](./factory_pattern/factory_method/FactoryMethodDemo.java)）
+#### 4.2 工厂方法模式（Factory Method Pattern）（[查看示例](./factory_pattern/factory_method/FactoryMethodDemo.java)）
 
 * 工厂方法模式是一种创建型设计模式，它通过定义抽象工厂类来创建抽象产品类的实例。抽象工厂类定义了创建抽象产品类的方法，而具体工厂类则实现了抽象工厂类中的方法，并返回具体产品类的实例。
 * 核心结构:
@@ -146,7 +163,7 @@
   * 类数量增加：每个产品都需要一个对应的工厂类，类数量成倍增长
   * 复杂度上升：对于简单场景来说，会略显复杂
 
-#### 抽象工厂模式（Abstract Factory Pattern）（[查看示例](./factory_pattern/abstract_factory/AbstractFactoryDemo.java)）
+#### 4.3 抽象工厂模式（Abstract Factory Pattern）（[查看示例](./factory_pattern/abstract_factory/AbstractFactoryDemo.java)）
 * 抽象工厂模式是一种创建型设计模式
 * 核心结构：
   * 抽象工厂（Abstract Factory）：定义一组用于创建产品的接口，如 CompanyFactory
