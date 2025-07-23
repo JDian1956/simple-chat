@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit;
 public class RabbitListeners {
     private final Logger logger = LoggerFactory.getLogger(RabbitListeners.class);
 
-    @RabbitListener(queues = "email.queue", concurrency = "5")
+    @RabbitListener(queues = "email.queue", concurrency = "2")
     public void feedBackEmail(Message message,
                               String body,
                               Channel channel,
@@ -27,7 +27,7 @@ public class RabbitListeners {
         try {
             String messageId = message.getMessageProperties().getMessageId();
             //logger.info("Message ID: {}", messageId);
-            //logger.info("Message Body: {}", body);
+            logger.info("Message Body: {}", body);
             TimeUnit.MILLISECONDS.sleep(10);
 
             channel.basicAck(deliveryTag, false);
