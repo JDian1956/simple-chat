@@ -1,5 +1,6 @@
 package com.hobby.auth.service.impl;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.hobby.api.RemoteNotifyService;
@@ -52,6 +53,7 @@ public class SysUserServiceImpl implements SysUserService {
         return 1;
     }
 
+    @SentinelResource(value = "queryAuthList")
     @Override
     public PageResponse<SysUserDto> queryList(int current, int size) {
         if ( current < 1 || size < 1){
