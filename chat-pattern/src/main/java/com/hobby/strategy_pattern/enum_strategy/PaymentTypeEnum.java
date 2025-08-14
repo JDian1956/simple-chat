@@ -1,7 +1,5 @@
 package com.hobby.strategy_pattern.enum_strategy;
 
-import com.hobby.payment.interfaces.Payment;
-
 /**
  * 枚举策略模式
  *
@@ -12,21 +10,23 @@ public enum PaymentTypeEnum {
     /**
      * 支付宝
      */
-    ALI_PAY(PaymentStrategyProvider::aliPay),
+    ALI_PAY{
+        public Double apply(Double price) {
+            System.out.println("使用支付宝支付");
+            return price * 0.1;
+        }
+    },
     /**
      * 微信
      */
-    WX_PAY(PaymentStrategyProvider::weChatPay),
+    WX_PAY {
+        public Double apply(Double price) {
+            System.out.println("使用微信支付");
+            return price * 0.01;
+        }
+    },
     ;
 
-    private final Payment payment;
-
-    PaymentTypeEnum(Payment  payment){
-        this.payment = payment;
-    }
-
-    public Double pay(Double amount){
-        return payment.pay(amount);
-    }
+    public abstract Double apply(Double amount);
 
 }

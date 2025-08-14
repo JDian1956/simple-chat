@@ -1,6 +1,5 @@
 package com.hobby.proxy_pattern;
 
-import com.hobby.proxy_pattern.MakePayment;
 
 /**
  * @author Harris
